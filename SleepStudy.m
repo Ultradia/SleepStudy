@@ -5,8 +5,16 @@ str = horzcat('Patient: ',ID,' - ','Channel: ',num2str(channel));
 [hdr1, data1] = edfread(fname1);
 [hdr2, data2] = edfread(fname2);
 
+% length1 = length(data1);
+% length2 = length(data2);
+
+% cutTime = 15*60*200; % 15 minutes 
+% 
 ChannelData1 = data1(channel,:);
 ChannelData2 = data2(channel,:);
+
+% ChannelData1 = data1(channel,1:end-cutTime);
+% ChannelData2 = data2(channel,1:end-cutTime);
 
 [S1,f1] = pwelch(ChannelData1,window,overlap,[],frequency);
 [S2,f2] = pwelch(ChannelData2,window,overlap,[],frequency);
